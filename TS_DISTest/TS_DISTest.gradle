@@ -21,12 +21,14 @@ task dockerBuildImage (type: Exec) {
 }
 
 dependencies {
-	compileOnly     libraries.tc_lib
-	compileOnly     libraries.tc_lib_dis
+	// TODO: replace implementation by compileOnly when DIS test engine is available
+	implementation libraries.tc_lib
+	implementation libraries.tc_lib_dis
+	implementation libraries.open_dis
+	implementation libraries.dis_enums
+
 	compileOnly     libraries.slf4j_api
 	compileOnly		libraries.jsonSimple
-	implementation	libraries.tc_lib
-	implementation	libraries.tc_lib_dis
 
 	testImplementation libraries.tc_lib
 	testImplementation libraries.tc_lib_dis
@@ -35,8 +37,6 @@ dependencies {
 	testImplementation libraries.junit_jupiter_engine
 	testImplementation libraries.activemqEmbedded
 	
-	implementation libraries.open_dis
-	implementation libraries.dis_enums
 }
 
 test {
