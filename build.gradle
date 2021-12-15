@@ -1,0 +1,5 @@
+apply from: "./.shared/libraries.gradle"
+
+project.group = 'ts-dis'
+project.version = "${disTestVersion}"
+apply from: "./.shared/commons.gradle"

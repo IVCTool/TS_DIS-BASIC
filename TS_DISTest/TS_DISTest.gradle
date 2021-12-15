@@ -1,0 +1,75 @@
+buildscript {
+	repositories {
+		mavenLocal()
+		mavenCentral()
+	}
+}
+
+plugins {
+	// use java application packaging feature
+	id 'application'
+}
+
+mainClassName = 'dis.tc_distest.Run'
+
+task dockerBuildImage (type: Exec) {
+	group = 'Docker'
+	description = 'command line task to create docker image'
+	executable 'docker'
+	args 'build', '-t', "ivct/ts-distest:${disTestVersion}", '--build-arg', "version=${disTestVersion}", '.'
+	dependsOn('distTar')
+}
+
+dependencies {
+	compileOnly     libraries.tc_lib
+	compileOnly     libraries.tc_lib_dis
+	compileOnly     libraries.slf4j_api
+	compileOnly		libraries.jsonSimple
+	implementation	libraries.tc_lib
+	implementation	libraries.tc_lib_dis
+
+	testImplementation libraries.tc_lib
+	testImplementation libraries.tc_lib_dis
+	testImplementation libraries.slf4j_api
+	testImplementation libraries.jsonSimple
+	testImplementation libraries.junit_jupiter_engine
+	testImplementation libraries.activemqEmbedded
+	
+	implementation libraries.open_dis
+	implementation libraries.dis_enums
+}
+
+test {
+	useJUnitPlatform()
+}
+
+
+// Write the  IVCT-Version as set to variable in libraries.gradle
+// in a  property-file
+task writeVersion {
+	group = "Build"
+	description = "Creates a properties file with version information"
+
+	doLast {
+		def prop = new Properties()
+		prop.version = ivctVersion
+		prop.ivctVersion = ivctVersion
+		prop.disTestVersion = disTestVersion
+		prop.build = "git describe --tags".execute().text.trim()
+		mkdir "src/main/resources"
+		File propFile = file('src/main/resources/testCaseBuild.properties')
+		prop.store(propFile.newWriter(), null)
+	}
+}
+processResources.dependsOn writeVersion
+
+// write IVCT-Version informations to manifest - file
+jar{
+	manifest{
+		attributes(
+				'Build-Timestamp': new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").format(new Date()),
+				'ivctVersion' : ivctVersion,
+				'build' :       "git describe --tags".execute().text.trim()
+				)
+	}
+}

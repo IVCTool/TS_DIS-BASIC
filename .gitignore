@@ -1,0 +1,34 @@
+# ivct version file for test suite compatibility check
+testCaseBuild.properties
+
+# local settings for gradle shall be ignored
+gradle.properties
+# but not the wrapper jar
+!gradle-wrapper.jar
+
+### Eclipse ###
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+*.classpath
+*.project
+
+### Gradle ###
+.gradle
+build/
+
+### VisualStudioCode ###
+.vscode/*
+# !.vscode/settings.json
+# !.vscode/tasks.json
+# !.vscode/launch.json
+# !.vscode/extensions.json
+*.code-workspace

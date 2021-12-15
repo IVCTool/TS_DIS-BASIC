@@ -1,0 +1,10 @@
+{
+  "numberOfCycles" : "10",
+  "entityKind" : "1",
+  "domain" : "2",
+  "country" : "255",
+  "category" : "1",
+  "subcategory" : "2",
+  "specification" : "1",
+  "growthRate" : "1.0003"
+}

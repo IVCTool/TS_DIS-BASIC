@@ -1,0 +1,18 @@
+buildscript {
+    repositories {
+		mavenLocal()
+		mavenCentral()
+	}
+}
+
+apply plugin: 'application'
+mainClassName = 'distest.DISTest'
+
+
+dependencies {
+    implementation     libraries.slf4j_api
+    implementation     libraries.logback_classic
+	implementation     libraries.logback_core
+    implementation     files("$System.env.LRC_CLASSPATH")
+}
+
