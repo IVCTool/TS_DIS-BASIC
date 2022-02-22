@@ -1,16 +1,14 @@
 package dis.tc_distest;
 
 import dis_lib.IVCT_BaseModel;
-import de.fraunhofer.iosb.tc_lib_if.*;
-import de.fraunhofer.iosb.tc_lib_if.TcInconclusive;
-import de.fraunhofer.iosb.tc_lib_if.TcFailed;
+import dis_lib.*;
 
 import org.slf4j.Logger;
 
 import edu.nps.moves.dis.*;
 import dis.tc_lib_distest.*;
 
-public class TC_DISTest_001 extends AbstractTestCaseIf {
+public class TC_DISTest_001 extends AbstractDisTestCase {
 
     static DISTestTcParam disTestTcParam;
     private DIS_PDUListener testListener;
@@ -18,8 +16,7 @@ public class TC_DISTest_001 extends AbstractTestCaseIf {
     private Pdu response;
 
     @Override
-    public IVCT_BaseModel getIVCT_BaseModel(final String tcParamJson, final Logger logger) throws TcInconclusive {
-        disTestTcParam = new DISTestTcParam(tcParamJson);
+    public IVCT_BaseModel getIVCT_BaseModel(final Logger logger) throws TcInconclusive {
     	IVCT_BaseModel disBaseModel = new IVCT_BaseModel();
     	return disBaseModel;
     }

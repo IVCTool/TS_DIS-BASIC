@@ -21,8 +21,6 @@ task dockerBuildImage (type: Exec) {
 }
 
 dependencies {
-	// TODO: replace implementation by compileOnly when DIS test engine is available
-	implementation libraries.tc_lib
 	implementation libraries.tc_lib_dis
 	implementation libraries.open_dis
 	implementation libraries.dis_enums
@@ -30,7 +28,6 @@ dependencies {
 	compileOnly     libraries.slf4j_api
 	compileOnly		libraries.jsonSimple
 
-	testImplementation libraries.tc_lib
 	testImplementation libraries.tc_lib_dis
 	testImplementation libraries.slf4j_api
 	testImplementation libraries.jsonSimple

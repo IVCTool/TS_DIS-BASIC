@@ -1,19 +1,15 @@
 package dis.tc_lib_distest;
 
-import java.net.URL;
-
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.slf4j.LoggerFactory;
 
-import de.fraunhofer.iosb.tc_lib_if.IVCT_TcParam;
-import de.fraunhofer.iosb.tc_lib_if.TcInconclusive;
+import dis_lib.TcInconclusive;
 
-public class DISTestTcParam implements IVCT_TcParam {
 
-    private final int FILE_NUM = 1;
-    private URL[] urls = new URL[this.FILE_NUM];
+public class DISTestTcParam {
+
     private int numberOfCycles = 10;
     private short entityKind;
     private short domain;
@@ -126,13 +122,4 @@ public class DISTestTcParam implements IVCT_TcParam {
     public short getSpec() {
         return this.specification;
     }
-
-    /**
-     * @return the urls
-     */
-    @Override
-    public URL[] getUrls() {
-        return this.urls;
-    }
-    
 }
